@@ -9,32 +9,88 @@
 :root{--bg:#EEF3FD;--ink:#0F1F3D;--muted:#4A5A78;--accent:#2563EB;--line:#D3DEF7;--card:#fff;--body:#1E2F4F;--link:#1D4ED8;--warn:#FFF4E5;--warnline:#B45309}
 @media (prefers-color-scheme:dark){:root{--bg:#111111;--ink:#F9FAFB;--muted:#A8B0BF;--line:#2D2D2D;--card:#1A1A1A;--body:#E5E7EB;--link:#8AB4FF;--warn:#2A2112;--warnline:#F5A524}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding:0 16px}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.0625rem/1.7 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding:0 16px}
 main{max-width:760px;margin:0 auto;padding:40px 0 64px}
 header{display:flex;align-items:center;gap:16px;margin-bottom:8px}
 .logo{width:52px;height:52px;flex:none;border-radius:14px;background:#2563EB;display:flex;align-items:center;justify-content:center}
-h1{font-size:28px;line-height:1.2;margin:0}
-.sub{color:var(--muted);margin:2px 0 0;font-size:15px}
+h1{font-size:1.75rem;line-height:1.2;margin:0}
+.sub{color:var(--muted);margin:2px 0 0;font-size:.9375rem}
 nav{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
-nav a{padding:10px 18px;border-radius:999px;background:var(--card);color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;border:2px solid var(--line);min-height:44px;display:inline-flex;align-items:center}
+nav a{padding:10px 18px;border-radius:999px;background:var(--card);color:var(--ink);text-decoration:none;font-weight:700;font-size:.9375rem;border:2px solid var(--line);min-height:44px;display:inline-flex;align-items:center}
 nav a:hover,nav a:focus-visible{border-color:var(--accent);outline:none}
 section.lang{background:var(--card);border-radius:20px;padding:28px 28px 20px;margin-bottom:24px}
-h2{font-size:23px;margin:0 0 4px}
-h3{font-size:18px;margin:26px 0 6px}
-h4{font-size:16px;margin:16px 0 4px}
+h2{font-size:1.4375rem;margin:0 0 4px}
+h3{font-size:1.125rem;margin:26px 0 6px}
+h4{font-size:1rem;margin:16px 0 4px}
 p,li{color:var(--body)}
 ul,ol{padding-inline-start:22px;margin:6px 0}
 li{margin:4px 0}
 .summary{background:var(--bg);border-radius:14px;padding:14px 18px;margin:16px 0}
 .summary strong{color:var(--ink)}
 .warn{background:var(--warn);border-left:4px solid var(--warnline);border-radius:10px;padding:12px 16px;margin:14px 0}
-.date{color:var(--muted);font-size:15px;margin:0}
+.date{color:var(--muted);font-size:.9375rem;margin:0}
 a{color:var(--link)}
 a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .other{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-weight:700;margin:8px 0 20px}
-footer{color:var(--muted);font-size:14px;text-align:center}
-@media (max-width:480px){section.lang{padding:22px 18px 14px}h1{font-size:24px}}
+footer{color:var(--muted);font-size:.875rem;text-align:center}
+@media (max-width:480px){section.lang{padding:22px 18px 14px}h1{font-size:1.5rem}}
+/* ── Erişilebilirlik paneli ─────────────────────────────────────────
+   Harici kaynak yok: yazı tipi, simge ve betik sayfanın içinde. */
+html{font-size:calc(16px * var(--fs,1))}
+main{padding-bottom:120px;overflow-wrap:anywhere}  /* uzun adresler büyük yazıda ekrandan taşmasın */
+
+/* Kontrast modları. html.k-* seçicisi :root'tan daha özgül olduğu için
+   sistemin koyu/açık tercihini de ezer. */
+html.k-acik{--bg:#EEF3FD;--ink:#0F1F3D;--muted:#4A5A78;--accent:#2563EB;--line:#D3DEF7;--card:#fff;--body:#1E2F4F;--link:#1D4ED8;--warn:#FFF4E5;--warnline:#B45309}
+html.k-koyu{--bg:#111111;--ink:#F9FAFB;--muted:#A8B0BF;--accent:#5B8DEF;--line:#2D2D2D;--card:#1A1A1A;--body:#E5E7EB;--link:#8AB4FF;--warn:#2A2112;--warnline:#F5A524}
+html.k-yuksek{--bg:#000;--ink:#FFFF00;--muted:#FFFF00;--accent:#FFFF00;--line:#FFFFFF;--card:#000;--body:#FFFFFF;--link:#00FFFF;--warn:#000;--warnline:#FFFF00}
+html.k-yuksek section.lang,html.k-yuksek .summary,html.k-yuksek .warn,html.k-yuksek nav a{border:2px solid #fff}
+html.k-yuksek a{text-decoration:underline;text-underline-offset:3px}
+html.k-gri main{filter:grayscale(1)}
+html.k-dusuk main{filter:saturate(.4)}
+
+/* Okuma kolaylıkları */
+html.aralik main p,html.aralik main li{line-height:2.1;letter-spacing:.05em;word-spacing:.15em}
+html.aralik main p{margin:0 0 1em}
+html.disleksi main{font-family:Verdana,Tahoma,"Segoe UI",sans-serif;letter-spacing:.03em}
+html.disleksi main p,html.disleksi main li{text-align:left}
+html.baglanti main a{background:#FFEB3B;color:#000!important;text-decoration:underline 3px;text-underline-offset:3px;padding:0 3px;border-radius:4px}
+html.imlec,html.imlec *{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'%3E%3Cpath d='M4 2l16 10-7 1.5 4 7.5-3 1.5-4-7.5L4 20z' fill='%23000' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E") 6 4,auto!important}
+
+/* Sesli okunan paragraf */
+.okunuyor{outline:3px solid #F59E0B;outline-offset:4px;background:rgba(245,158,11,.16);border-radius:6px}
+html.k-yuksek .okunuyor{outline-color:#00FFFF;background:#003333}
+
+/* Okuma rehberi: ekranı karartıp okunan satır bandını açık bırakır */
+#e-rehber-ust,#e-rehber-alt{position:fixed;left:0;right:0;background:rgba(0,0,0,.55);z-index:998;pointer-events:none}
+
+/* Büyüteç düğmesi */
+#erisim-ac{position:fixed;right:16px;bottom:16px;z-index:1000;width:64px;height:64px;border-radius:50%;border:3px solid #fff;background:#2563EB;color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+html.k-yuksek #erisim-ac{background:#000;border-color:#FFFF00;color:#FFFF00}
+#erisim-ac:focus-visible,.e-btn:focus-visible{outline:4px solid #F59E0B;outline-offset:3px}
+
+/* Panel */
+#erisim-panel{position:fixed;right:12px;bottom:92px;z-index:1001;width:min(400px,calc(100vw - 24px));max-height:calc(100vh - 112px);max-height:calc(100dvh - 112px);overflow:auto;overscroll-behavior:contain;background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.4);padding:12px 16px 18px;font-size:min(1rem,22px);line-height:1.45}
+#erisim-panel[hidden]{display:none}
+.e-ust{display:flex;justify-content:space-between;align-items:center;gap:8px;position:sticky;top:-12px;background:var(--card);padding:6px 0;z-index:1}
+.e-ust h2{font-size:1.25em;margin:0}
+.e-ust .e-btn{flex:0 0 48px;padding:0;font-size:1.3em}
+.e-btn svg{width:1.1em;height:1.1em;vertical-align:-.15em;margin-inline-end:.35em;fill:currentColor}
+.e-grup{margin-top:16px}
+.e-grup h3{font-size:.95em;margin:0 0 8px;color:var(--muted)}
+.e-satir{display:flex;flex-wrap:wrap;gap:8px}
+.e-satir+.e-satir{margin-top:8px}
+.e-btn{min-height:48px;min-width:48px;padding:8px 12px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-weight:700;cursor:pointer;flex:1 1 auto;line-height:1.2}
+.e-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+html.k-yuksek .e-btn[aria-pressed="true"]{color:#000}
+.e-btn:disabled{opacity:.45;cursor:not-allowed}
+.e-deger{min-width:72px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1em}
+.e-genis{flex-basis:100%}
+.e-not{font-size:.88em;color:var(--muted);margin:8px 0 0}
+.e-gizli{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 </style>
+<script>(function(){try{var a=JSON.parse(localStorage.getItem("gorunenai-erisim"))||{},r=document.documentElement,F=[1,1.25,1.5,1.75,2];r.style.setProperty("--fs",F[a.fs||0]);if(a.kontrast)r.classList.add("k-"+a.kontrast);["aralik","baglanti","disleksi","imlec"].forEach(function(c){if(a[c])r.classList.add(c)})}catch(e){}})();</script>
 </head>
 <body>
 <main>
@@ -129,5 +185,292 @@ footer{color:var(--muted);font-size:14px;text-align:center}
 <p class="other"><a href="../">Gizlilik Politikası · Privacy Policy</a><a href="../kullanim-sartlari/">Kullanım Şartları · Terms of Use</a></p>
 <footer>GörünenAI · Yunus Emre Şeker · <a href="mailto:yunusemreseker6@gmail.com">yunusemreseker6@gmail.com</a></footer>
 </main>
+<script>/* GörünenAI erişilebilirlik paneli.
+   Harici hiçbir şey yüklemez, veri göndermez. Ayarlar yalnızca bu
+   tarayıcıda (localStorage) saklanır. Sesli okuma tarayıcının kendi
+   konuşma motorunu (Web Speech API) kullanır. */
+(function () {
+  "use strict";
+  var d = document, root = d.documentElement, KEY = "gorunenai-erisim";
+  var TR = (navigator.language || "tr").toLowerCase().indexOf("tr") === 0;
+  var L = TR ? {
+    ac: "Erişilebilirlik ayarlarını aç", baslik: "Erişilebilirlik", kapat: "Kapat",
+    sesli: "Sesli okuma", oku: "Sayfayı oku", devam: "Devam et", duraklat: "Duraklat", durdur: "Durdur",
+    hiz: "Okuma hızı", yavas: "Yavaş", normal: "Normal", hizli: "Hızlı",
+    sesliNot: "Okuma, ekranda gördüğünüz yerden başlar. Okurken bir paragrafa dokunursanız oradan devam eder.",
+    yazi: "Yazı boyutu", kucult: "Yazıyı küçült", buyut: "Yazıyı büyüt",
+    kontrast: "Kontrast ve renk", varsayilan: "Varsayılan", yuksek: "Yüksek kontrast", koyu: "Koyu", acik: "Açık", gri: "Gri tonlama", dusuk: "Düşük doygunluk",
+    diger: "Okuma kolaylıkları", aralik: "Satır ve harf aralığı", baglanti: "Bağlantıları vurgula", disleksi: "Disleksi dostu yazı", rehber: "Okuma rehberi", imlec: "Büyük imleç",
+    profiller: "Hazır profiller", azgoren: "Az gören", kor: "Sesli dinle", renk: "Renk körlüğü", dis: "Disleksi", odak: "Dikkat ve odak", epilepsi: "Epilepsi", motor: "Hareket kısıtlılığı",
+    profilNot: "Bir profil, ilgili ayarları tek dokunuşla açar. Tek tek ayarları yukarıdan değiştirebilirsiniz.",
+    sifirla: "Tüm ayarları sıfırla",
+    isitme: "Bu sayfalarda ses veya video yoktur; bütün içerik yazılıdır. Ayarlarınız yalnızca bu tarayıcıda saklanır, hiçbir yere gönderilmez.",
+    yok: "Bu tarayıcı sesli okumayı desteklemiyor. Telefonunuzun ekran okuyucusunu (TalkBack) kullanabilirsiniz.",
+    basladi: "Sesli okuma başladı", duraklatildi: "Okuma duraklatıldı", durduruldu: "Okuma durduruldu", bitti: "Sayfanın sonuna gelindi",
+    acik_: "açık", kapali_: "kapalı", sifirlandi: "Tüm ayarlar sıfırlandı", profilAcildi: "profili açıldı",
+    sesYok: "Sesli okuma başlatılamadı. Telefonunuzda Türkçe ses paketi yüklü olmayabilir; genellikle Ayarlar > Erişilebilirlik > Metin okuma çıkışı bölümünden eklenir. Ekran okuyucunuz (TalkBack) da bu sayfayı okuyabilir."
+  } : {
+    ac: "Open accessibility settings", baslik: "Accessibility", kapat: "Close",
+    sesli: "Read aloud", oku: "Read the page", devam: "Continue", duraklat: "Pause", durdur: "Stop",
+    hiz: "Reading speed", yavas: "Slow", normal: "Normal", hizli: "Fast",
+    sesliNot: "Reading starts where you are on the screen. Tap a paragraph while reading to continue from there.",
+    yazi: "Text size", kucult: "Smaller text", buyut: "Bigger text",
+    kontrast: "Contrast and colour", varsayilan: "Default", yuksek: "High contrast", koyu: "Dark", acik: "Light", gri: "Greyscale", dusuk: "Low saturation",
+    diger: "Reading aids", aralik: "Line and letter spacing", baglanti: "Highlight links", disleksi: "Dyslexia-friendly font", rehber: "Reading guide", imlec: "Big cursor",
+    profiller: "Profiles", azgoren: "Low vision", kor: "Listen", renk: "Colour blindness", dis: "Dyslexia", odak: "Attention and focus", epilepsi: "Epilepsy", motor: "Limited mobility",
+    profilNot: "A profile turns on the related settings with one tap. You can change single settings above.",
+    sifirla: "Reset all settings",
+    isitme: "These pages contain no audio or video; all content is text. Your settings are stored only in this browser and are not sent anywhere.",
+    yok: "This browser does not support read aloud. You can use your phone's screen reader (TalkBack).",
+    basladi: "Reading started", duraklatildi: "Reading paused", durduruldu: "Reading stopped", bitti: "End of the page",
+    acik_: "on", kapali_: "off", sifirlandi: "All settings reset", profilAcildi: "profile on",
+    sesYok: "Read aloud could not start. A voice for this language may not be installed on your phone; you can usually add one in Settings > Accessibility > Text-to-speech output. Your screen reader (TalkBack) can also read this page."
+  };
+
+  /* ── Ayarlar ─────────────────────────────────────────────────── */
+  var FS = [1, 1.25, 1.5, 1.75, 2];
+  var TOGGLE = ["aralik", "baglanti", "disleksi", "rehber", "imlec"];
+  var KONTRAST = ["", "yuksek", "koyu", "acik", "gri", "dusuk"];
+  var PROFIL = {
+    azgoren:  { fs: 2, kontrast: "yuksek", aralik: true },
+    kor:      { fs: 1, oku: true },
+    renk:     { kontrast: "yuksek", baglanti: true },
+    dis:      { disleksi: true, aralik: true, rehber: true },
+    odak:     { rehber: true, aralik: true },
+    epilepsi: { kontrast: "dusuk" },
+    motor:    { fs: 1, imlec: true, baglanti: true }
+  };
+  var ayar = {};
+  try { ayar = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { ayar = {}; }
+  if (!ayar.hiz) ayar.hiz = 1;
+  function kaydet() { try { localStorage.setItem(KEY, JSON.stringify(ayar)); } catch (e) {} }
+
+  function uygula() {
+    root.style.setProperty("--fs", FS[ayar.fs || 0]);
+    KONTRAST.forEach(function (k) { if (k) root.classList.remove("k-" + k); });
+    if (ayar.kontrast) root.classList.add("k-" + ayar.kontrast);
+    ["aralik", "baglanti", "disleksi", "imlec"].forEach(function (c) { root.classList.toggle(c, !!ayar[c]); });
+    rehber(!!ayar.rehber);
+    dugmeler();
+  }
+
+  /* ── Panel ───────────────────────────────────────────────────── */
+  var IK = {
+    oynat: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>',
+    dur: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4.5" width="4.2" height="15" rx="1"/><rect x="13.8" y="4.5" width="4.2" height="15" rx="1"/></svg>',
+    kare: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" rx="1.5"/></svg>',
+    geri: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5a7 7 0 1 1-6.6 9.3l1.9-.7A5 5 0 1 0 12 7v3L7.5 6 12 2z"/></svg>'
+  };
+  function b(attr, metin, ek) { return '<button type="button" class="e-btn' + (ek || "") + '" ' + attr + ">" + metin + "</button>"; }
+  var fab = d.createElement("button");
+  fab.id = "erisim-ac"; fab.type = "button";
+  fab.setAttribute("aria-label", L.ac);
+  fab.setAttribute("aria-expanded", "false");
+  fab.setAttribute("aria-controls", "erisim-panel");
+  fab.innerHTML = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/><path d="M8 10.5h5M10.5 8v5"/></svg>';
+
+  var panel = d.createElement("div");
+  panel.id = "erisim-panel";
+  panel.setAttribute("role", "dialog");
+  panel.setAttribute("aria-labelledby", "e-baslik");
+  panel.hidden = true;
+  panel.innerHTML =
+    '<div class="e-ust"><h2 id="e-baslik">' + L.baslik + "</h2>" + b('data-k="kapat" aria-label="' + L.kapat + '"', "✕") + "</div>" +
+    '<div class="e-grup"><h3>' + L.sesli + "</h3>" +
+      '<div class="e-satir">' + b('data-k="oku" id="e-oku"', IK.oynat + L.oku, " e-genis") + "</div>" +
+      '<div class="e-satir">' + b('data-k="duraklat"', IK.dur + L.duraklat) + b('data-k="durdur"', IK.kare + L.durdur) + "</div>" +
+      '<div class="e-satir" role="group" aria-label="' + L.hiz + '">' +
+        b('data-hiz="0.8"', L.yavas) + b('data-hiz="1"', L.normal) + b('data-hiz="1.25"', L.hizli) + "</div>" +
+      '<p class="e-not" id="e-sesli-not">' + L.sesliNot + "</p></div>" +
+    '<div class="e-grup"><h3 id="e-yazi-b">' + L.yazi + '</h3><div class="e-satir" role="group" aria-labelledby="e-yazi-b">' +
+      b('data-k="kucult" aria-label="' + L.kucult + '"', "A−") + '<span class="e-deger" id="e-fs" aria-live="polite">100%</span>' +
+      b('data-k="buyut" aria-label="' + L.buyut + '"', "A+") + "</div></div>" +
+    '<div class="e-grup"><h3 id="e-kon-b">' + L.kontrast + '</h3><div class="e-satir" role="group" aria-labelledby="e-kon-b">' +
+      b('data-kon=""', L.varsayilan) + b('data-kon="yuksek"', L.yuksek) + b('data-kon="koyu"', L.koyu) +
+      b('data-kon="acik"', L.acik) + b('data-kon="gri"', L.gri) + b('data-kon="dusuk"', L.dusuk) + "</div></div>" +
+    '<div class="e-grup"><h3 id="e-dig-b">' + L.diger + '</h3><div class="e-satir" role="group" aria-labelledby="e-dig-b">' +
+      TOGGLE.map(function (t) { return b('data-t="' + t + '"', L[t]); }).join("") + "</div></div>" +
+    '<div class="e-grup"><h3 id="e-pro-b">' + L.profiller + '</h3><div class="e-satir" role="group" aria-labelledby="e-pro-b">' +
+      Object.keys(PROFIL).map(function (p) { return b('data-p="' + p + '"', L[p]); }).join("") + "</div>" +
+      '<p class="e-not">' + L.profilNot + "</p></div>" +
+    '<div class="e-grup">' + b('data-k="sifirla"', IK.geri + L.sifirla, " e-genis") + '<p class="e-not">' + L.isitme + "</p></div>" +
+    '<div class="e-gizli" id="e-durum" aria-live="assertive"></div>';
+  d.body.appendChild(panel);
+  d.body.appendChild(fab);
+  var durumEl = d.getElementById("e-durum");
+  function durum(m) { durumEl.textContent = ""; setTimeout(function () { durumEl.textContent = m; }, 30); }
+
+  function ac() { panel.hidden = false; fab.setAttribute("aria-expanded", "true"); d.getElementById("e-baslik").setAttribute("tabindex", "-1"); d.getElementById("e-baslik").focus(); }
+  function kapat() { panel.hidden = true; fab.setAttribute("aria-expanded", "false"); fab.focus(); }
+  fab.addEventListener("click", function () { panel.hidden ? ac() : kapat(); });
+  d.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) kapat(); });
+
+  function bas(sel, on) { [].forEach.call(panel.querySelectorAll(sel), function (x) { x.setAttribute("aria-pressed", on(x) ? "true" : "false"); }); }
+  function dugmeler() {
+    d.getElementById("e-fs").textContent = Math.round(FS[ayar.fs || 0] * 100) + "%";
+    panel.querySelector('[data-k="kucult"]').disabled = !(ayar.fs > 0);
+    panel.querySelector('[data-k="buyut"]').disabled = (ayar.fs || 0) >= FS.length - 1;
+    bas("[data-kon]", function (x) { return x.getAttribute("data-kon") === (ayar.kontrast || ""); });
+    bas("[data-t]", function (x) { return !!ayar[x.getAttribute("data-t")]; });
+    bas("[data-hiz]", function (x) { return parseFloat(x.getAttribute("data-hiz")) === ayar.hiz; });
+    bas("[data-p]", function (x) { return ayar.profil === x.getAttribute("data-p"); });
+    var okuBtn = d.getElementById("e-oku");
+    okuBtn.innerHTML = IK.oynat + (duraklatildi ? L.devam : L.oku);
+    okuBtn.setAttribute("aria-pressed", okuyor ? "true" : "false");
+    panel.querySelector('[data-k="duraklat"]').disabled = !okuyor;
+    panel.querySelector('[data-k="durdur"]').disabled = !(okuyor || duraklatildi);
+    if (!destek) {
+      [].forEach.call(panel.querySelectorAll('[data-k="oku"],[data-k="duraklat"],[data-k="durdur"],[data-hiz]'), function (x) { x.disabled = true; });
+      d.getElementById("e-sesli-not").textContent = L.yok;
+    }
+  }
+
+  panel.addEventListener("click", function (e) {
+    var t = e.target.closest("button"); if (!t) return;
+    var k = t.getAttribute("data-k");
+    if (k === "kapat") return kapat();
+    if (k === "oku") return okuyor ? null : (duraklatildi ? devamEt() : basla());
+    if (k === "duraklat") return duraklat();
+    if (k === "durdur") return durdur(true);
+    if (k === "kucult" || k === "buyut") {
+      ayar.fs = Math.max(0, Math.min(FS.length - 1, (ayar.fs || 0) + (k === "buyut" ? 1 : -1)));
+      ayar.profil = null; kaydet(); uygula(); return durum(L.yazi + " " + Math.round(FS[ayar.fs] * 100) + "%");
+    }
+    if (k === "sifirla") { durdur(false); ayar = { hiz: 1 }; kaydet(); uygula(); return durum(L.sifirlandi); }
+    if (t.hasAttribute("data-kon")) { ayar.kontrast = t.getAttribute("data-kon"); ayar.profil = null; kaydet(); uygula(); return durum(t.textContent); }
+    if (t.hasAttribute("data-t")) { var n = t.getAttribute("data-t"); ayar[n] = !ayar[n]; ayar.profil = null; kaydet(); uygula(); return durum(t.textContent + " " + (ayar[n] ? L.acik_ : L.kapali_)); }
+    if (t.hasAttribute("data-hiz")) { ayar.hiz = parseFloat(t.getAttribute("data-hiz")); kaydet(); dugmeler(); if (okuyor) { ss.cancel(); setTimeout(konus, 80); } return durum(L.hiz + ": " + t.textContent); }
+    if (t.hasAttribute("data-p")) {
+      var p = t.getAttribute("data-p"), pr = PROFIL[p];
+      var hiz = ayar.hiz; ayar = { hiz: hiz, profil: p };
+      Object.keys(pr).forEach(function (x) { if (x !== "oku") ayar[x] = pr[x]; });
+      kaydet(); uygula(); durum(t.textContent + " " + L.profilAcildi);
+      if (pr.oku) { kapat(); basla(); }
+    }
+  });
+
+  /* ── Okuma rehberi ───────────────────────────────────────────── */
+  var ust = null, alt = null, sonY = innerHeight / 2;
+  function konumla(y) {
+    if (!ust) return; sonY = y;
+    var lh = parseFloat(getComputedStyle(d.body).fontSize) * 1.7 * 2.2;
+    ust.style.top = "0"; ust.style.height = Math.max(0, y - lh / 2) + "px";
+    alt.style.top = (y + lh / 2) + "px"; alt.style.bottom = "0";
+  }
+  function rehber(on) {
+    if (on && !ust) {
+      ust = d.createElement("div"); ust.id = "e-rehber-ust"; alt = d.createElement("div"); alt.id = "e-rehber-alt";
+      ust.setAttribute("aria-hidden", "true"); alt.setAttribute("aria-hidden", "true");
+      d.body.appendChild(ust); d.body.appendChild(alt); konumla(sonY);
+    } else if (!on && ust) { ust.remove(); alt.remove(); ust = alt = null; }
+  }
+  d.addEventListener("pointermove", function (e) { if (ust) konumla(e.clientY); }, { passive: true });
+  d.addEventListener("touchmove", function (e) { if (ust && e.touches[0]) konumla(e.touches[0].clientY); }, { passive: true });
+
+  /* ── Sesli okuma ─────────────────────────────────────────────── */
+  var ss = window.speechSynthesis;
+  var destek = !!(ss && window.SpeechSynthesisUtterance);
+  var SECICI = "h2,.date,.summary,.warn,h3,h4,p,li";
+  var bloklar = [], sira = 0, parcalar = [], parcaSira = 0, dil = "tr-TR";
+  var okuyor = false, duraklatildi = false, isaretli = null, aktif = null;
+  var konustu = false, hataSayisi = 0;   // motor en az bir kez konuştu mu, art arda kaç hata
+  var azHareket = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (destek && "onvoiceschanged" in ss) ss.onvoiceschanged = function () {};
+
+  function bolumler() { return [].slice.call(d.querySelectorAll("section.lang")); }
+  function gorunenBolum() {
+    var orta = innerHeight / 2, s = bolumler();
+    for (var i = 0; i < s.length; i++) { var r = s[i].getBoundingClientRect(); if (r.top <= orta && r.bottom >= orta) return s[i]; }
+    for (var j = 0; j < s.length; j++) { if (s[j].getBoundingClientRect().bottom > 0) return s[j]; }
+    return s[0];
+  }
+  function topla(sec) {
+    return [].slice.call(sec.querySelectorAll(SECICI)).filter(function (e) {
+      return !e.parentElement.closest(SECICI) && e.textContent.trim();
+    });
+  }
+  function bol(t) {
+    t = t.replace(/\s+/g, " ").trim();
+    var cumle = t.match(/[^.!?;:]+[.!?;:]*\s*/g) || [t], out = [], buf = "";
+    cumle.forEach(function (c) {
+      c = c.trim(); if (!c) return;
+      while (c.length > 240) { var i = c.lastIndexOf(",", 240); if (i < 60) i = c.lastIndexOf(" ", 240); if (i < 1) i = 240; out.push(c.slice(0, i + 1)); c = c.slice(i + 1).trim(); }
+      if (buf && (buf + " " + c).length > 220) { out.push(buf); buf = c; } else buf = buf ? buf + " " + c : c;
+    });
+    if (buf) out.push(buf);
+    return out;
+  }
+  function ses() {
+    var vs = ss.getVoices() || [], p = dil.slice(0, 2);
+    var uy = vs.filter(function (v) { return (v.lang || "").toLowerCase().replace("_", "-").indexOf(p) === 0; });
+    return uy.filter(function (v) { return /google/i.test(v.name); })[0] || uy[0] || null;
+  }
+  function isaretle(el) {
+    if (isaretli) isaretli.classList.remove("okunuyor");
+    isaretli = el; if (!el) return;
+    el.classList.add("okunuyor");
+    el.scrollIntoView({ block: "center", behavior: azHareket ? "auto" : "smooth" });
+  }
+  function hazirla() { var bl = bloklar[sira]; isaretle(bl); parcalar = bol(bl.textContent); parcaSira = 0; }
+  function konus() {
+    if (!okuyor) return;
+    while (parcaSira >= parcalar.length) {
+      sira++;
+      if (sira >= bloklar.length) { durdur(false); durum(L.bitti); return; }
+      hazirla();
+    }
+    var u = new SpeechSynthesisUtterance(parcalar[parcaSira]);
+    u.lang = dil; var v = ses(); if (v) u.voice = v; u.rate = ayar.hiz || 1;
+    u.onstart = function () { konustu = true; hataSayisi = 0; };
+    u.onend = function () { if (aktif !== u || !okuyor) return; hataSayisi = 0; parcaSira++; konus(); };
+    u.onerror = function (e) {
+      if (aktif !== u || !okuyor || e.error === "interrupted" || e.error === "canceled") return;
+      // Motor hiç konuşamadıysa (ses paketi yok) ya da art arda 3 kez hata verdiyse
+      // sayfayı sessizce tüketmek yerine dur ve kullanıcıya nedenini söyle.
+      hataSayisi++;
+      if (!konustu || hataSayisi >= 3) return basarisiz();
+      parcaSira++; konus();
+    };
+    aktif = u; window.__eUtt = u;   // Chrome'da çöp toplayıcı onend'i yutmasın
+    ss.speak(u);
+  }
+  function basla(idx, sec) {
+    if (!destek) { durum(L.yok); return; }
+    ss.cancel();
+    sec = sec || gorunenBolum();
+    dil = (sec.getAttribute("lang") || "tr").indexOf("en") === 0 ? "en-GB" : "tr-TR";
+    bloklar = topla(sec);
+    if (idx == null) { idx = 0; for (var i = 0; i < bloklar.length; i++) { if (bloklar[i].getBoundingClientRect().bottom > 60) { idx = i; break; } } }
+    sira = idx; okuyor = true; duraklatildi = false; konustu = false; hataSayisi = 0; hazirla(); dugmeler(); durum(L.basladi);
+    setTimeout(konus, 120);   // cancel()'dan hemen sonra speak() bazı tarayıcılarda düşer
+  }
+  function basarisiz() {
+    durdur(false);
+    d.getElementById("e-sesli-not").textContent = L.sesYok;
+    durum(L.sesYok);
+  }
+  function duraklat() { if (!okuyor) return; okuyor = false; duraklatildi = true; aktif = null; ss.cancel(); dugmeler(); durum(L.duraklatildi); }
+  function devamEt() { if (!duraklatildi) return basla(); okuyor = true; duraklatildi = false; parcaSira = 0; isaretle(bloklar[sira]); dugmeler(); setTimeout(konus, 120); }
+  function durdur(bildir) {
+    var vardi = okuyor || duraklatildi;
+    okuyor = false; duraklatildi = false; aktif = null;
+    if (destek) ss.cancel();
+    isaretle(null); bloklar = []; sira = 0; dugmeler();
+    if (bildir && vardi) durum(L.durduruldu);
+  }
+  // Okurken bir paragrafa dokunulursa oradan devam et
+  d.addEventListener("click", function (e) {
+    if (!(okuyor || duraklatildi) || panel.contains(e.target) || e.target === fab || e.target.closest("a,button")) return;
+    var hedef = e.target.closest(SECICI), sec = hedef && hedef.closest("section.lang");
+    if (!sec) return;
+    var liste = topla(sec), i = liste.indexOf(hedef);
+    if (i < 0) { var ust_ = hedef.parentElement && hedef.parentElement.closest(SECICI); i = liste.indexOf(ust_); }
+    if (i >= 0) basla(i, sec);
+  });
+  addEventListener("pagehide", function () { if (destek) ss.cancel(); });
+
+  uygula();
+})();
+</script>
 </body>
 </html>
