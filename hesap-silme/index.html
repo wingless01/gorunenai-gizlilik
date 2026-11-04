@@ -87,6 +87,7 @@ html.k-yuksek .e-btn[aria-pressed="true"]{color:#000}
 .e-deger{min-width:72px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1em}
 .e-genis{flex-basis:100%}
 .e-not{font-size:.88em;color:var(--muted);margin:8px 0 0}
+.e-uyari{background:var(--warn);border-left:4px solid var(--warnline);border-radius:8px;padding:10px 12px;color:var(--ink);font-weight:600}
 .e-gizli{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 </style>
@@ -205,7 +206,7 @@ html.k-yuksek .e-btn[aria-pressed="true"]{color:#000}
     profilNot: "Bir profil, ilgili ayarları tek dokunuşla açar. Tek tek ayarları yukarıdan değiştirebilirsiniz.",
     sifirla: "Tüm ayarları sıfırla",
     isitme: "Bu sayfalarda ses veya video yoktur; bütün içerik yazılıdır. Ayarlarınız yalnızca bu tarayıcıda saklanır, hiçbir yere gönderilmez.",
-    yok: "Bu tarayıcı sesli okumayı desteklemiyor. Telefonunuzun ekran okuyucusunu (TalkBack) kullanabilirsiniz.",
+    yok: "Bu görünümde sesli okuma çalışmıyor: bazı uygulamaların içinde açılan sayfalar bunu desteklemez. Sayfayı Chrome'da açarak deneyin ya da telefonunuzun ekran okuyucusunu (TalkBack) kullanın.",
     basladi: "Sesli okuma başladı", duraklatildi: "Okuma duraklatıldı", durduruldu: "Okuma durduruldu", bitti: "Sayfanın sonuna gelindi",
     acik_: "açık", kapali_: "kapalı", sifirlandi: "Tüm ayarlar sıfırlandı", profilAcildi: "profili açıldı",
     sesYok: "Sesli okuma başlatılamadı. Telefonunuzda Türkçe ses paketi yüklü olmayabilir; genellikle Ayarlar > Erişilebilirlik > Metin okuma çıkışı bölümünden eklenir. Ekran okuyucunuz (TalkBack) da bu sayfayı okuyabilir."
@@ -221,7 +222,7 @@ html.k-yuksek .e-btn[aria-pressed="true"]{color:#000}
     profilNot: "A profile turns on the related settings with one tap. You can change single settings above.",
     sifirla: "Reset all settings",
     isitme: "These pages contain no audio or video; all content is text. Your settings are stored only in this browser and are not sent anywhere.",
-    yok: "This browser does not support read aloud. You can use your phone's screen reader (TalkBack).",
+    yok: "Read aloud does not work in this view: pages opened inside some apps do not support it. Try opening the page in Chrome, or use your phone's screen reader (TalkBack).",
     basladi: "Reading started", duraklatildi: "Reading paused", durduruldu: "Reading stopped", bitti: "End of the page",
     acik_: "on", kapali_: "off", sifirlandi: "All settings reset", profilAcildi: "profile on",
     sesYok: "Read aloud could not start. A voice for this language may not be installed on your phone; you can usually add one in Settings > Accessibility > Text-to-speech output. Your screen reader (TalkBack) can also read this page."
@@ -320,8 +321,9 @@ html.k-yuksek .e-btn[aria-pressed="true"]{color:#000}
     panel.querySelector('[data-k="duraklat"]').disabled = !okuyor;
     panel.querySelector('[data-k="durdur"]').disabled = !(okuyor || duraklatildi);
     if (!destek) {
-      [].forEach.call(panel.querySelectorAll('[data-k="oku"],[data-k="duraklat"],[data-k="durdur"],[data-hiz]'), function (x) { x.disabled = true; });
-      d.getElementById("e-sesli-not").textContent = L.yok;
+      // "Oku" düğmesi bilerek açık kalır: kapalı bir düğmeye basan kullanıcı
+      // nedenini öğrenemez. Basınca nedeni ve çözümü söylenir (uyar()).
+      [].forEach.call(panel.querySelectorAll('[data-k="duraklat"],[data-k="durdur"],[data-hiz]'), function (x) { x.disabled = true; });
     }
   }
 
@@ -434,8 +436,13 @@ html.k-yuksek .e-btn[aria-pressed="true"]{color:#000}
     aktif = u; window.__eUtt = u;   // Chrome'da çöp toplayıcı onend'i yutmasın
     ss.speak(u);
   }
+  function uyar(m) {
+    var n = d.getElementById("e-sesli-not");
+    n.textContent = m; n.className = "e-not e-uyari";
+    durum(m);   // ekran okuyucu da duysun
+  }
   function basla(idx, sec) {
-    if (!destek) { durum(L.yok); return; }
+    if (!destek) { uyar(L.yok); return; }
     ss.cancel();
     sec = sec || gorunenBolum();
     dil = (sec.getAttribute("lang") || "tr").indexOf("en") === 0 ? "en-GB" : "tr-TR";
@@ -446,8 +453,7 @@ html.k-yuksek .e-btn[aria-pressed="true"]{color:#000}
   }
   function basarisiz() {
     durdur(false);
-    d.getElementById("e-sesli-not").textContent = L.sesYok;
-    durum(L.sesYok);
+    uyar(L.sesYok);
   }
   function duraklat() { if (!okuyor) return; okuyor = false; duraklatildi = true; aktif = null; ss.cancel(); dugmeler(); durum(L.duraklatildi); }
   function devamEt() { if (!duraklatildi) return basla(); okuyor = true; duraklatildi = false; parcaSira = 0; isaretle(bloklar[sira]); dugmeler(); setTimeout(konus, 120); }
